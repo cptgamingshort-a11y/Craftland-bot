@@ -126,3 +126,4 @@ npm audit --omit=dev
 
 Never commit `.env`, Firebase service-account JSON, bot tokens, OAuth secrets, or Gemini keys. The old PostgreSQL-backed code has been replaced by Firestore storage; this does not copy records from any prior PostgreSQL database. If an old live database contains records that must be retained, export and migrate that data separately before switching the bot over. Revoke and replace any credential that was exposed in a tracked file or screenshot.
 "# Craftland-bot" 
+"# Craftland-bot" 
