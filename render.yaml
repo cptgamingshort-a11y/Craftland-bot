@@ -3,7 +3,7 @@ services:
     name: craftland-bot
     runtime: node
     plan: free
-    buildCommand: npm ci && npm run build
+    buildCommand: npm ci --include=dev && npm run build && npm prune --omit=dev
     startCommand: npm start
     envVars:
       - key: NODE_ENV
