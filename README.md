@@ -50,13 +50,14 @@ npm run build
 npm start
 ```
 
-Or use `npm run dev` during development. After the bot is online and slash commands are registered, the **server owner** runs `/setup` to safely inspect and create missing roles, categories, and channels. Existing resources are reused; the command does not delete or modify existing roles/channels. `/setup configure:true` opens the settings wizard. Created resources and configuration changes are audited to Firestore.
+Or use `npm run dev` during development. After the bot is online and slash commands are registered, the **server owner** runs `/setup` to safely inspect the server and provision the reference layout. It reuses matching Craftland channels, renames them to the styled layout, and moves them into their matching categories while preserving channel permission overwrites; unrelated channels and existing roles are left untouched. Missing roles, categories, and channels are created. `/setup configure:true` opens the settings wizard. Resource changes and configuration changes are audited to Firestore.
 
 The setup command needs Manage Roles, Manage Channels, View Channels, Send Messages, Embed Links, Read Message History, Manage Messages, and Moderate Members. It does not need Administrator. If a matching role is managed, Administrator, or at/above the bot's highest role, setup stops safely so the owner can resolve the hierarchy.
 
 ## Features and commands
 
 - Professional Craftland India join welcome; optional configured Member role.
+- Members joining `create-a-voice-channel` get a personal temporary voice room with a TempVoice-style control panel in that voice channel’s built-in chat. Owner/staff can rename it, set a user limit, toggle privacy/waiting-room/chat, trust or invite members, kick/block/unblock members, choose a region, claim/transfer ownership, and delete the room. Empty rooms are removed automatically.
 - Contribution points, approved/rejected map reviews, reports, warnings/timeouts, audit logging and scheduled weekly leaderboard (`Asia/Kolkata`).
 - Message XP with cooldown, duplicate/spam checks, a configurable daily cap and progressive levels. XP remains separate from contribution points.
 - A separate Craft Coins game in `#games`: daily rewards, cooldown-based hunts, collectible companions, a no-stake solo arena, shop items, Map Crates, coin flips, a persistent 3×3 Mines game and a coin leaderboard. Game balances do not change XP or contribution points.
@@ -81,7 +82,23 @@ After code changes, run `npm run build` and restart the task with
 `Start-ScheduledTask -TaskName CraftlandIndiaBot`. Check
 `Get-ScheduledTask -TaskName CraftlandIndiaBot`, `bot-managed.log`, and
 `bot-managed.stdout.log`.
+Do not run `npm start` at the same time as the scheduled task; both processes
+connect as the same Discord bot and can send duplicate replies.
 The PC must remain powered on, awake, connected to the Internet, and signed in.
+
+### Render free web service
+
+The repository includes `render.yaml` for a free Render web service. Connect this
+GitHub repository in Render and create a Blueprint from it. Enter the requested
+secrets in Render's environment setup: `DISCORD_TOKEN`, `CLIENT_ID`,
+`DISCORD_GUILD_ID`, `FIREBASE_CLIENT_EMAIL`, and `FIREBASE_PRIVATE_KEY` (plus
+`GEMINI_API_KEY` if AI moderation/replies are needed). The bot exposes an HTTP
+health response for Render while the Discord client runs.
+
+Render's free web services sleep after 15 minutes without inbound HTTP traffic
+or WebSocket messages. Discord Gateway traffic alone does not count, so this is
+not 24/7 hosting; the bot can disconnect while asleep and reconnect after an
+HTTP request wakes it. Render can also restart free instances at any time.
 
 ### Keep the bot online when this PC is off
 
@@ -114,7 +131,6 @@ Then stop and disable the local `CraftlandIndiaBot` Scheduled Task to avoid two
 bot sessions and duplicate scheduled posts. Do not stop the local bot before
 the cloud copy is verified.
 
-
 ```powershell
 npm run check
 npm audit --omit=dev
@@ -125,5 +141,5 @@ npm audit --omit=dev
 ## Credentials and migration
 
 Never commit `.env`, Firebase service-account JSON, bot tokens, OAuth secrets, or Gemini keys. The old PostgreSQL-backed code has been replaced by Firestore storage; this does not copy records from any prior PostgreSQL database. If an old live database contains records that must be retained, export and migrate that data separately before switching the bot over. Revoke and replace any credential that was exposed in a tracked file or screenshot.
-"# Craftland-bot" 
-"# Craftland-bot" 
+"# Craftland-bot"
+"# Craftland-bot"

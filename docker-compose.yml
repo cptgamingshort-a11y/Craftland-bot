@@ -1,0 +1,11 @@
+services:
+  bot:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      NODE_ENV: production
+    volumes:
+      - ./serviceAccountKey.json:/app/serviceAccountKey.json:ro
+    ports:
+      - "127.0.0.1:3000:3000"

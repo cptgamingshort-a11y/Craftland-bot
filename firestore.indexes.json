@@ -1,0 +1,20 @@
+{
+  "indexes": [
+    {"collectionGroup":"activities","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"status","order":"ASCENDING"},{"fieldPath":"timestamp","order":"DESCENDING"}]},
+    {"collectionGroup":"activities","queryScope":"COLLECTION","fields":[{"fieldPath":"status","order":"ASCENDING"},{"fieldPath":"timestamp","order":"ASCENDING"}]},
+    {"collectionGroup":"activities","queryScope":"COLLECTION","fields":[{"fieldPath":"type","order":"ASCENDING"},{"fieldPath":"status","order":"ASCENDING"},{"fieldPath":"timestamp","order":"ASCENDING"}]},
+    {"collectionGroup":"reviews","queryScope":"COLLECTION","fields":[{"fieldPath":"status","order":"ASCENDING"},{"fieldPath":"createdAt","order":"ASCENDING"}]},
+    {"collectionGroup":"reviews","queryScope":"COLLECTION","fields":[{"fieldPath":"status","order":"ASCENDING"},{"fieldPath":"decidedAt","order":"ASCENDING"}]},
+    {"collectionGroup":"reviews","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"status","order":"ASCENDING"},{"fieldPath":"createdAt","order":"DESCENDING"}]},
+    {"collectionGroup":"pointTransactions","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"createdAt","order":"DESCENDING"}]},
+    {"collectionGroup":"pointTransactions","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"createdAt","order":"ASCENDING"}]},
+    {"collectionGroup":"xpTransactions","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"createdAt","order":"ASCENDING"}]},
+    {"collectionGroup":"reports","queryScope":"COLLECTION","fields":[{"fieldPath":"status","order":"ASCENDING"},{"fieldPath":"createdAt","order":"ASCENDING"}]},
+    {"collectionGroup":"moderationActions","queryScope":"COLLECTION","fields":[{"fieldPath":"type","order":"ASCENDING"},{"fieldPath":"createdAt","order":"ASCENDING"}]},
+    {"collectionGroup":"userXPs","queryScope":"COLLECTION","fields":[{"fieldPath":"roleSyncPending","order":"ASCENDING"},{"fieldPath":"xp","order":"DESCENDING"}]},
+    {"collectionGroup":"userXPs","queryScope":"COLLECTION","fields":[{"fieldPath":"configVersion","order":"ASCENDING"},{"fieldPath":"xp","order":"DESCENDING"}]},
+    {"collectionGroup":"leaderboards","queryScope":"COLLECTION","fields":[{"fieldPath":"period","order":"ASCENDING"},{"fieldPath":"startsAt","order":"DESCENDING"}]},
+    {"collectionGroup":"jobRuns","queryScope":"COLLECTION","fields":[{"fieldPath":"completed","order":"ASCENDING"},{"fieldPath":"leaseUntil","order":"ASCENDING"}]}
+  ],
+  "fieldOverrides": []
+}

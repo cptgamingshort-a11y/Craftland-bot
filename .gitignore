@@ -1,0 +1,15 @@
+node_modules/
+dist/
+public/
+.firebase/
+.env
+config/.env
+serviceAccountKey.json
+*service-account*.json
+*firebase-adminsdk*.json
+coverage/
+*.log
+.bot-managed.pid
+audit-report.json
+embedded-versions.json
+.rank-configure.tmp.ts

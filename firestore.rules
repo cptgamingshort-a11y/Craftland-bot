@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // The Discord bot uses Firebase Admin on the server. Client SDK access is denied.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
